@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 id="title" class="text-center">Chetan's Survey Form</h1>
+        <p id="description" class="description text-center">
+          Thank you for taking the time to see my work
+        </p>
+      </header>
+      <form id="survey-form">
+        <div class="form-group">
+          <label id="name-label" for="name">Name</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name..." required />
+        </div>
+        <div class="form-group">
+          <label id="email-label" for="email">Email</label>
+          <input  type="email"  name="email"  id="email"  class="form-control"  placeholder="abc@xyz.com"  required />
+        </div>
+        <div class="form-group">
+          <label id="number-label" for="number"
+            >Age<span class="clue">(optional)</span></label>
+          <input  type="number"  name="age"  id="number"  min="10"  max="99"  class="form-control"  placeholder="Enter Age" />
+        </div>
+        <div class="form-group">
+          <p class="likely">How would you describe my work?</p>
+          <select id="dropdown" name="role" class="form-control" required>
+            <option disabled selected value>Select</option>
+            <option value="firsttime">I'm Seening This For First Time</option>
+            <option value="good">You're Pretty Good At This </option>
+            <option value="awfull">I Don't Like It</option>
+            <option value="interset">I'm Not Interseted</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <p class="likely">Would you recommend Me to a friend?</p>
+          <label>
+            <input  name="user-recommend"  value="definitely"  type="radio"  class="input-radio"  checked/>Definitely
+        </label>
+          <label>
+            <input  name="user-recommend"  value="maybe"  type="radio"  class="input-radio" />Maybe
+        </label>
+
+          <label>
+            <input  name="user-recommend"  value="Never"  type="radio"  class="input-radio"/>Never
+        </label>
+        </div>
+
+        <div class="form-group">
+          <p class="likely">
+            What would you like to see improved?
+          </p>
+
+          <label>
+            <input  name="prefer"  value="front-end-projects"  type="checkbox"  class="input-checkbox" />Front-end Projects
+        </label>
+          <label>
+            <input  name="prefer"  value="Improve-Colour-Combinations"  type="checkbox"  class="input-checkbox"/>Improve Colour Combinations</label>
+          <label>
+            <input  name="prefer"  value="Bring-something-new"  type="checkbox"  class="input-checkbox" />Bring something new
+        </label>
+          <label>
+            <input  name="prefer"  value="challenges"  type="checkbox"  class="input-checkbox"/>Challenges
+        </label>
+          
+        </div>
+
+        <div class="form-group">
+          <p>Any comments or suggestions?</p>
+          <textarea id="comments" class="input-textarea" name="comment" placeholder="Type Here..." ></textarea>
+        </div>
+
+        <div >
+          <button type="submit" id="submit" class="submit-button">
+            Submit:)
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
