@@ -19,3 +19,6 @@
 - > Picasso Painting<br>https://chetan559.github.io/365Days/picasso%20painting/index.html
 - > Piano<br>https://chetan559.github.io/365Days/Piano/index.html
 - > City Skyline<br>https://chetan559.github.io/365Days/CitySkyline/index.html  
+- > Magazine<br>https://chetan559.github.io/365Days/Magazine/index.html
+- > Ferris Wheel<br>https://chetan559.github.io/365Days/Ferris20%Wheel/index.html
+- > Penguin<br>https://chetan559.github.io/365Days/penguin/index.html
