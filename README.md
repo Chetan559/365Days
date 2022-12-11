@@ -7,9 +7,9 @@
   > <br>
 - > Tribute-Page<br>https://chetan559.github.io/365Days/Tribute%20Page/index.html
   > <br>
-- > Technical-Documentation-Page<br>https://chetan559.github.io/365Days/Technical20%Documentation20%Page/index.html
+- > Technical-Documentation-Page<br>https://chetan559.github.io/365Days/Technical%20Documentation%20Page/index.html
   > <br>
-- > Product-Landing-Page<br>https://chetan559.github.io/365Days/Product20%Landing20%Page/index.html
+- > Product-Landing-Page<br>https://chetan559.github.io/365Days/Product%20Landing%20Page/index.html
   > <br>  
 ## Practice Projects
 
@@ -26,5 +26,5 @@
 - > Piano<br>https://chetan559.github.io/365Days/Piano/index.html
 - > City Skyline<br>https://chetan559.github.io/365Days/CitySkyline/index.html  
 - > Magazine<br>https://chetan559.github.io/365Days/Magazine/index.html
-- > Ferris Wheel<br>https://chetan559.github.io/365Days/Ferris20%Wheel/index.html
+- > Ferris Wheel<br>https://chetan559.github.io/365Days/Ferris%20Wheel/index.html
 - > Penguin<br>https://chetan559.github.io/365Days/penguin/index.html
