@@ -180,11 +180,11 @@ footer a {
     .lil-left{
         margin-left:30%;
         text-align: left;
-      }
+    }
     
-      .lil-less-left{
-        text-align: left;
-        margin-left: 28%;
+    .lil-less-left{
+          text-align:center;
+          margin-left: 28%;
       }
       
   }
