@@ -166,3 +166,12 @@ footer a {
     content: "365Dayscodingchallenge";
     width: 350px;
   }
+  .lil-left{
+    margin-left:40%;
+    text-align: left;
+  }
+
+  .lil-less-left{
+    text-align: left;
+    margin-left: 38%;
+  }
