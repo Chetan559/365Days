@@ -16,7 +16,8 @@
   > <br>
 - > Personal-Portfolio<br>https://chetan559.github.io/365Days/Personal-Portfolio/index.html
   > <br>  
-- > Hover-Card-Kakashi<br>https://chetan559.github.io/365days/hover-card/index.html
+- > Hover-Card-Kakashi<br>https://chetan559.github.io/365Days/hover-card/index.html
+  > <br>
 ## Practice Projects
 
 - > Cat Photo App<br>https://chetan559.github.io/365Days/CatPhotoAap/index.html
