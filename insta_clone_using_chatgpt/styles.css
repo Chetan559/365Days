@@ -1,0 +1,94 @@
+
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set body to full height */
+  html, body {
+    height: 100%;
+  }
+  
+  /* Style header */
+  header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+  }
+  
+  nav ul li a {
+    color: #262626;
+    text-decoration: none;
+  }
+  
+  nav ul li a:hover {
+    color: #3897f0;
+  }
+  
+  /* Style main content */
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 80px;
+    padding: 20px;
+  }
+  
+  main section {
+    width: 60%;
+  }
+  
+  main section h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style feed */
+  .feed-item {
+    margin-bottom: 20px;
+  }
+  
+  .feed-item img {
+    max-width: 100%;
+  }
+  
+  .feed-item span {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* Style aside */
+  aside {
+    width: 30%;
+  }
+  
+  aside h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style footer */
+  footer {
+    background-color: #ffffff;
+    border-top: 1px solid #dbdbdb;
+    bottom: 0;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+  }
+  
+  
+  
+  
