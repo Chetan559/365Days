@@ -18,6 +18,7 @@
   > <br>  
 - > Hover-Card-Kakashi<br>https://chetan559.github.io/365Days/hover-card/index.html
   > <br>
+- > Pokemon-Slider<br>https://chetan559.github.io/365Days/pokemon_slider/index.html  
 ## Practice Projects
 
 - > Cat Photo App<br>https://chetan559.github.io/365Days/CatPhotoAap/index.html
