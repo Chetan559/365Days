@@ -5,7 +5,7 @@
 - > https://www.freecodecamp.org/certification/Chetan_Sharma/responsive-web-design
   > <br>
 ## Projects
- 
+  > <br> 
 - > Survey Form<br>https://chetan559.github.io/365Days/Certificationproject1/index.html
   > <br>
 - > Tribute-Page<br>https://chetan559.github.io/365Days/Tribute%20Page/index.html
@@ -18,7 +18,10 @@
   > <br>  
 - > Hover-Card-Kakashi<br>https://chetan559.github.io/365Days/hover-card/index.html
   > <br>
-- > Pokemon-Slider<br>https://chetan559.github.io/365Days/pokemon_slider/index.html  
+- > Pokemon-Slider<br>https://chetan559.github.io/365Days/pokemon_slider/index.html 
+  > <br> 
+- > Icon-Hover<br>https://chetan559.github.io/365Days/Icon-Hover/index.html
+  > <br>
 ## Practice Projects
 
 - > Cat Photo App<br>https://chetan559.github.io/365Days/CatPhotoAap/index.html
@@ -36,3 +39,4 @@
 - > Magazine<br>https://chetan559.github.io/365Days/Magazine/index.html
 - > Ferris Wheel<br>https://chetan559.github.io/365Days/Ferris%20Wheel/index.html
 - > Penguin<br>https://chetan559.github.io/365Days/penguin/index.html
+days
