@@ -1,0 +1,93 @@
+@import 'https://fonts.googleapis.com/css?family=Lato:400,700';
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 32px;
+    font-size: 20px;
+    font-weight: 900;
+    background-image: url(https://wallpaper.dog/large/20394383.jpg);
+    border-bottom: 4px solid #3581f4;
+    height: 150px;
+  }
+  
+  #title{
+    background-image:url(https://e1.pxfuel.com/desktop-wallpaper/180/83/desktop-wallpaper-binary-technology-hq-binary-binary-options.jpg);
+    background-size: cover;
+    background-position: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+  }
+  
+  .gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px;
+  }
+  
+  .gallery img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .gallery::after {
+    content: "";
+    width: 350px;
+  }
+  
+  footer {
+    margin-top: 10px;
+    background-color: #80b2fd;
+    padding: 20px;
+    padding-bottom: 25px;
+    height: 120px;
+  }
+
+  footer a {
+    text-decoration: none;
+    color: aliceblue;
+  }   
+  
+  footer a:hover{
+    color: #3581f4;
+  }
+
+  footer > ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  footer > ul > li {
+    margin: 10px;
+    padding: 0 10px;
+    
+  }
+  
+  footer > span {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.9em;
+    color: #444;
+  }
