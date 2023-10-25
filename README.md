@@ -39,5 +39,5 @@
 - > Magazine<br>https://chetan559.github.io/365Days/Magazine/index.html
 - > Ferris Wheel<br>https://chetan559.github.io/365Days/Ferris%20Wheel/index.html
 - > Penguin<br>https://chetan559.github.io/365Days/penguin/index.html
-- > Instagram-Clone{Generated from ChatGPT}<br>https://chetan559.githu.io/365Days/insta_clone_using_chatgpt/index.html
-- > Score board<br>https://chetan559.githu.io/365Days/Score%20board/index.html
+- > Instagram-Clone{Generated from ChatGPT}<br>https://chetan559.github.io/365Days/insta_clone_using_chatgpt/index.html
+- > Score board<br>https://chetan559.github.io/365Days/Score%20board/index.html
