@@ -22,6 +22,8 @@
   > <br> 
 - > Icon-Hover<br>https://chetan559.github.io/365Days/Icon-Hover/index.html
   > <br>
+- > Fraud detection system<br>https://chetan559.github.io/365Days/Fraud_detection_system/index.html
+  > <br>
 ## Practice Projects
 
 - > Cat Photo App<br>https://chetan559.github.io/365Days/CatPhotoAap/index.html
