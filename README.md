@@ -24,6 +24,8 @@
   > <br>
 - > Fraud detection system<br>https://chetan559.github.io/365Days/Fraud_detection_system/index.html
   > <br>
+- > Contact Card<br>https://chetan559.github.io/365Days/vcard/2.html
+  > <br>
 ## Practice Projects
 
 - > Cat Photo App<br>https://chetan559.github.io/365Days/CatPhotoAap/index.html
