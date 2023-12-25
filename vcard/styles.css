@@ -26,7 +26,7 @@ body{
     background-image: radial-gradient( #f9f52c, #ff961d);  
     width: 100%;
     height: 40%;
-    padding-top: 20px;
+    padding: 20px 0;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem ;
     box-shadow: 1px 15px 25px -10px rgba(255, 255, 255, .25);
@@ -35,10 +35,8 @@ body{
 .bottom-card{
     width: 100%;
     height: 60%;
-    background-color: #f0f0f0;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    font-size: 1.3em;
 }
 
 .img{
@@ -60,8 +58,15 @@ img{
     align-items: center;
   }
   
+  p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    margin: 10px 0;
+  }
+
   .contact-info {
-    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,4 +79,59 @@ img{
     border: 1px solid #000000;
     border-radius: 5px;
     margin-right: 10px;
+    padding: 5px 25px;
+  }
+
+  .contact-info-span{
+    font-size: 0.8rem;
+    color: black;
+  }
+
+  #call-button{
+    float: left;
+    width: 50%;
+    overflow: hidden;
+  }
+
+  #email-button{
+    overflow: hidden;
+   
+  }
+
+  .details {
+    margin-bottom: 20px;
+  }
+  
+  .details div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .details label {
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-right: auto;
+  }
+
+  .symbol{
+    float: left;
+    width: 30%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .symbol-details{
+    overflow: hidden;
+  }
+
+  .symbol-details a{
+    font-size: 1.1rem;
+    color: #000000;
+  }
+
+  span{
+    font-size: 0.8rem;
+    color: #b1afaf;
   }
