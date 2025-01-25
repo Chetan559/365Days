@@ -1,0 +1,32 @@
+[
+  {
+    "name": "React",
+    "color": "#61DBFB",
+    "svgPath": "M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346..."
+  },
+  {
+    "name": "TypeScript",
+    "color": "#007acc",
+    "svgPath": "M1.125..."
+  },
+  {
+    "name": "JavaScript",
+    "color": "#F7DF1E",
+    "svgPath": "M0..."
+  },
+  {
+    "name": "NextJS",
+    "color": "#000000",
+    "svgPath": "M11.5725..."
+  },
+  {
+    "name": "Tailwindcss",
+    "color": "#20c8e9",
+    "svgPath": "M12..."
+  },
+  {
+    "name": "Sanity",
+    "color": "#ea4a36",
+    "svgPath": "M7..."
+  }
+]
