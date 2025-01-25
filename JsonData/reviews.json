@@ -1,38 +1,80 @@
 [
   {
-    "name": "Jack",
-    "username": "@jack",
-    "body": "I've never seen anything like this before. It's amazing. I love it.",
-    "img": "https://avatar.vercel.sh/jack"
+    "name": "Krishna",
+    "username": "krishna",
+    "body": "Nice work chetan. all the best for your future. In your bullet points, its taking up the whole width. probably restrict the width to parent element & make it left-aligned, so it will stay in center & will look good. In spotify, you can link to your personal playlist. That way people will understand your taste better. If you want that, that is. Damn! you have read intelligent investor. super!",
+    "img": "https://avatar.vercel.sh/krishna"
   },
   {
-    "name": "Jill",
-    "username": "@jill",
-    "body": "I don't know what to say. I'm speechless. This is amazing.",
-    "img": "https://avatar.vercel.sh/jill"
+    "name": "Jacob",
+    "username": "jacobnayak4",
+    "body": "Bhai boht sahi hai sirf jara 1-2 spelling mistakes hai wo dekh lena",
+    "img": "https://avatar.vercel.sh/jacob"
   },
   {
-    "name": "John",
-    "username": "@john",
-    "body": "I'm at a loss for words. This is amazing. I love it.",
-    "img": "https://avatar.vercel.sh/john"
+    "name": "Vyom Dixit",
+    "username": "vyomdixit19",
+    "body": "Your face is not visible in profile photo properly, u may change the profile photo.",
+    "img": "https://avatar.vercel.sh/vyomdixit19"
   },
   {
-    "name": "Jane",
-    "username": "@jane",
-    "body": "I'm at a loss for words. This is amazing. I love it.",
-    "img": "https://avatar.vercel.sh/jane"
+    "name": "Heet Jain",
+    "username": "heetjain",
+    "body": "Boot acchi thi website bhai Thode colours add kar de....or sections bhi",
+    "img": "https://avatar.vercel.sh/heetjain"
   },
   {
-    "name": "Jenny",
-    "username": "@jenny",
-    "body": "I'm at a loss for words. This is amazing. I love it.",
-    "img": "https://avatar.vercel.sh/jenny"
+    "name": "alpha pandey",
+    "username": "onlysamir1404",
+    "body": "wow iam litreally stunned medical student hu bhai",
+    "img": "https://avatar.vercel.sh/alpha"
   },
   {
-    "name": "James",
-    "username": "@james",
-    "body": "I'm at a loss for words. This is amazing. I love it.",
-    "img": "https://avatar.vercel.sh/james"
+    "name": "Divy Shah",
+    "username": "divysab1267",
+    "body": "You progressed very well bro Need to improve some designs used by u in frontend",
+    "img": "https://avatar.vercel.sh/divy"
+  },
+  {
+    "name": "Malum nhi tereko",
+    "username": "malumnhi",
+    "body": "Clean and Cut experience. Layout is Good !",
+    "img": "https://avatar.vercel.sh/malumnhi"
+  },
+  {
+    "name": "Krish",
+    "username": "aminkrish27",
+    "body": "you had done a great job You can bold your letters and type it in black , i cannot read properly and my eyes start paining",
+    "img": "https://avatar.vercel.sh/krish"
+  },
+  {
+    "name": "Ravi Kumar",
+    "username": "ravi6702",
+    "body": "Great work overall! Maybe consider adding some more contrast to make it easier on the eyes.",
+    "img": "https://avatar.vercel.sh/ravi"
+  },
+  {
+    "name": "Anjali Singh",
+    "username": "anjalisingh564",
+    "body": "Looks good, but it might be better if you simplify the navigation. It feels a bit cluttered.",
+    "img": "https://avatar.vercel.sh/anjali"
+  },
+  {
+    "name": "Arjun Sharma",
+    "username": "arjunsharma68",
+    "body": "This looks clean! I'd suggest improving the font size for better readability.",
+    "img": "https://avatar.vercel.sh/arjun"
+  },
+  {
+    "name": "Priya Patel",
+    "username": "priyapatel12",
+    "body": "Amazing work! Just some minor adjustments with the layout would make it perfect.",
+    "img": "https://avatar.vercel.sh/priya"
+  },
+  {
+    "name": "Vikram Reddy",
+    "username": "vikramreddy030985",
+    "body": "Nice job! Maybe try adding some animations to make it more dynamic.",
+    "img": "https://avatar.vercel.sh/vikram"
   }
 ]
