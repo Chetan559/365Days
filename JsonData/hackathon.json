@@ -66,10 +66,24 @@
     ]
   },
   {
-    "title": "New India Vibrant Hackathon 2023",
+    "title": "New India Vibrant Hackathon 2023 Finale",
     "description": "The New India Vibrant Hackathon 2023, organized under SSIP 2.0 by the Gujarat Knowledge Society, invites students to innovate solutions for real-world challenges posed by state government departments and municipal corporations.",
     "dates": "Nov 25, 2023",
     "location": "PDEU, Gandhinagar",
+    "image": "https://ssipgujarat.in/hackathon2023/img/ED.png",
+    "links": [
+      {
+        "icon": "🌐",
+        "title": "Website",
+        "href": "https://ssipgujarat.in/hackathon2023/"
+      }
+    ]
+  },
+  {
+    "title": "New India Vibrant Hackathon 2023 (Reginal Round)",
+    "description": "The New India Vibrant Hackathon 2023, organized under SSIP 2.0 by the Gujarat Knowledge Society, invites students to innovate solutions for real-world challenges posed by state government departments and municipal corporations.",
+    "dates": "Nov 4, 2023",
+    "location": "Anant National University, Ahmedabad",
     "image": "https://ssipgujarat.in/hackathon2023/img/ED.png",
     "links": [
       {
