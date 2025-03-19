@@ -33,6 +33,20 @@
     ]
   },
   {
+    "title": "HackOut'24",
+    "description": "HackOut'24, hosted by Dhirubhai Ambani Institute of Information and Communication Technology (DA-IICT) in Gandhinagar from August 9 to 11, 2024, was a rigorous 72-hour national-level hackathon celebrating National Space Day.",
+    "dates": "Aug 9 - Aug 11, 2024",
+    "location": "DA-IICT, Gandhinagar",
+    "image": "https://d8it4huxumps7.cloudfront.net/uploads/images/150x150/66a714ee4e065_",
+    "links": [
+      {
+        "icon": "🌐",
+        "title": "Website",
+        "href": "https://unstop.com/hackathons/hackout24-dhirubhai-ambani-institute-of-information-and-communication-technology-da-iict-gandhinagar-1095336"
+      }
+    ]
+  },
+  {
     "title": "Hack the Tank 2.0",
     "description": "Hack The Tank 2.0 is a hackathon organized by SVNIT Surat, where participants collaborate to develop innovative tech solutions, taking place on March 1-3, 2024.",
     "dates": "Mar 23 - Mar 24, 2024",
