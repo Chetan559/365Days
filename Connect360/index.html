@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connect 360 – Backend API Endpoints</title>
+    <style>
+      :root {
+        --bg: #0b0c10;
+        --panel: #111218;
+        --soft: #1a1c24;
+        --text: #e8e8f0;
+        --muted: #b9bfd3;
+        --accent: #5b8cff;
+        --border: #2a2d39;
+        --get: #2e7d32;
+        --post: #1565c0;
+        --put: #8e24aa;
+        --delete: #c62828;
+        --patch: #ef6c00;
+        --head: #6d4c41;
+        --options: #455a64;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,\"Noto Sans\",\"Helvetica Neue\",Arial,"Apple Color Emoji","Segoe UI Emoji";
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 100vh;
+      }
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        background: var(--panel);
+        border-right: 1px solid var(--border);
+      }
+      .brand {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .brand .logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--accent), #7d6bff);
+      }
+      .brand h1 {
+        font-size: 1rem;
+        margin: 0;
+      }
+      .toc {
+        padding: 0.75rem;
+      }
+      .toc a {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.6rem;
+        color: var(--muted);
+      }
+      .toc a:hover,
+      .toc a.active {
+        background: var(--soft);
+        color: var(--text);
+      }
+
+      .content {
+        padding: 2rem;
+      }
+      .topbar {
+        position: sticky;
+        top: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(11, 12, 16, 0.95),
+          rgba(11, 12, 16, 0.75)
+        );
+        backdrop-filter: saturate(160%) blur(8px);
+        z-index: 10;
+        border-bottom: 1px solid var(--border);
+        margin: -2rem -2rem 1.25rem;
+        -webkit-backdrop-filter: saturate(160%) blur(8px);
+      }
+      .topbar-inner {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+      }
+      .title {
+        font-size: 1.15rem;
+        margin: 0;
+      }
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .search {
+        flex: 1;
+        min-width: 260px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.8rem;
+      }
+      .search input {
+        all: unset;
+        flex: 1;
+        color: var(--text);
+      }
+      .method-filters {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+      .chip {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        padding: 0.3rem 0.55rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        color: var(--muted);
+        cursor: pointer;
+        user-select: none;
+      }
+      .chip[data-on="true"] {
+        outline: 2px solid var(--accent);
+        color: var(--text);
+      }
+
+      section {
+        scroll-margin-top: 84px;
+        margin-bottom: 2rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+        margin: 1.25rem 0 0.75rem;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      .table th,
+      .table td {
+        padding: 0.75rem 0.9rem;
+        vertical-align: top;
+        border-bottom: 1px solid var(--border);
+      }
+      .table th {
+        position: sticky;
+        top: 62px;
+        background: var(--panel);
+        text-align: left;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .table tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        background: var(--soft);
+        border: 1px solid var(--border);
+        padding: 0.15rem 0.35rem;
+        border-radius: 0.4rem;
+        color: #d7e3ff;
+      }
+      .endpoint {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+      }
+      .badge {
+        font: 600 0.75rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas,
+          monospace;
+        color: #fff;
+        border-radius: 6px;
+        padding: 0.25rem 0.45rem;
+        display: inline-block;
+      }
+      .GET {
+        background: var(--get);
+      }
+      .POST {
+        background: var(--post);
+      }
+      .PUT {
+        background: var(--put);
+      }
+      .DELETE {
+        background: var(--delete);
+      }
+      .PATCH {
+        background: var(--patch);
+      }
+      .HEAD {
+        background: var(--head);
+      }
+      .OPTIONS {
+        background: var(--options);
+      }
+      .copy {
+        cursor: pointer;
+        border: 1px dashed var(--border);
+        padding: 0.15rem 0.35rem;
+        border-radius: 0.4rem;
+        color: var(--muted);
+      }
+      .copy:hover {
+        color: var(--text);
+      }
+      .small {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .footer {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin: 2rem 0 1rem;
+      }
+
+      @media (max-width: 1024px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          display: none;
+        }
+        .topbar-inner {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .controls {
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo"></div>
+          <h1>Sarathi API</h1>
+        </div>
+        <nav class="toc" id="toc"></nav>
+      </aside>
+      <main class="content">
+        <div class="topbar">
+          <div class="topbar-inner">
+            <h2 class="title">Connect 360 – Backend API Endpoints</h2>
+            <div class="controls">
+              <div class="search" title="Search endpoint, path, or description">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input id="search" placeholder="Search endpoints..." />
+              </div>
+              <div class="method-filters" id="filters"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sections injected below -->
+        <div id="sections"></div>
+        <p class="footer">
+          Tip: Click a path to copy. Use method chips to filter.
+        </p>
+      </main>
+    </div>
+
+    <script>
+      // ---- Data (generated from your spec) ----
+      const apiSpec = [
+        {
+          title: "Authentication & User Management",
+          rows: [
+            {
+              m: "POST",
+              e: "/api/auth/login",
+              d: "User login for all portals",
+              r: "{ email, password, portal_type }",
+              s: "{ token, user_id, role, portal_access, profile_complete }",
+            },
+            {
+              m: "POST",
+              e: "/api/auth/register",
+              d: "Alumni self-registration",
+              r: "{ name, email, password, college_id, degree, department, graduation_year }",
+              s: "{ message, verification_required, request_id }",
+            },
+            {
+              m: "POST",
+              e: "/api/auth/logout",
+              d: "User logout",
+              r: "{ token }",
+              s: "{ message, success }",
+            },
+            {
+              m: "POST",
+              e: "/api/auth/forgot-password",
+              d: "Password reset request",
+              r: "{ email }",
+              s: "{ message, reset_token_sent }",
+            },
+            {
+              m: "POST",
+              e: "/api/auth/reset-password",
+              d: "Reset password",
+              r: "{ reset_token, new_password }",
+              s: "{ message, success }",
+            },
+            {
+              m: "GET",
+              e: "/api/auth/verify-token",
+              d: "Validate JWT token (Authorization: Bearer {token})",
+              r: "-",
+              s: "{ valid, user_id, role, expires_at }",
+            },
+          ],
+        },
+        {
+          title: "Alumni Registration & Verification",
+          rows: [
+            {
+              m: "POST",
+              e: "/api/alumni/bulk-upload",
+              d: "CSV bulk upload (College)",
+              r: "{ csv_file, college_id }",
+              s: "{ uploaded_count, success_count, errors[], processing_id }",
+            },
+            {
+              m: "GET",
+              e: "/api/alumni/verification-requests",
+              d: "Pending verifications (College)",
+              r: "college_id (query)",
+              s: "{ requests: [{ request_id, name, email, degree, department, submitted_at }] }",
+            },
+            {
+              m: "PUT",
+              e: "/api/alumni/verify/{request_id}",
+              d: "Approve/reject registration",
+              r: "{ status, rejection_reason? }",
+              s: "{ message, alumni_id?, credentials_sent }",
+            },
+            {
+              m: "GET",
+              e: "/api/alumni/upload-status/{processing_id}",
+              d: "Check bulk upload status",
+              r: "-",
+              s: "{ status, processed_count, total_count, errors[] }",
+            },
+          ],
+        },
+        {
+          title: "Profile Management",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/profile/{user_id}",
+              d: "Get user profile",
+              r: "-",
+              s: "{ profile: { personal_info, education[], experience[], skills[], connections_count, activities_summary } }",
+            },
+            {
+              m: "PUT",
+              e: "/api/profile/{user_id}",
+              d: "Update profile",
+              r: "{ personal_info?, education?, experience?, skills? }",
+              s: "{ message, updated_fields[], profile_completion_percentage }",
+            },
+            {
+              m: "GET",
+              e: "/api/profile/activities/{user_id}",
+              d: "Get user activities",
+              r: "page, limit, type (query)",
+              s: "{ activities: [{ type, title, date, details }], total_count, pagination }",
+            },
+            {
+              m: "POST",
+              e: "/api/profile/upload-photo",
+              d: "Upload profile photo",
+              r: "{ photo_file, user_id }",
+              s: "{ photo_url, message }",
+            },
+            {
+              m: "GET",
+              e: "/api/profile/completion/{user_id}",
+              d: "Profile completion status",
+              r: "-",
+              s: "{ completion_percentage, missing_fields[], recommendations[] }",
+            },
+          ],
+        },
+        {
+          title: "Alumni Directory & Search",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/alumni/directory",
+              d: "Get alumni directory",
+              r: "college_id?, page, limit, search?, filters{} (query)",
+              s: "{ alumni: [{ id, name, photo, current_position, company, graduation_year, location }], total_count, pagination }",
+            },
+            {
+              m: "GET",
+              e: "/api/alumni/search",
+              d: "Advanced search",
+              r: "name?, batch?, degree?, location?, company?, skills? (query)",
+              s: "{ results: [{ id, name, photo, match_score, position, company }], total_count }",
+            },
+            {
+              m: "GET",
+              e: "/api/alumni/map",
+              d: "Location-based search",
+              r: "location, radius? (query)",
+              s: "{ alumni: [{ id, name, position, company, coordinates, distance }] }",
+            },
+            {
+              m: "GET",
+              e: "/api/alumni/profile/{alumni_id}",
+              d: "Public alumni profile",
+              r: "-",
+              s: "{ profile: { public_info, education, experience, skills, connections_count }, privacy_settings }",
+            },
+          ],
+        },
+        {
+          title: "AI Profile Compatibility",
+          rows: [
+            {
+              m: "POST",
+              e: "/api/ai/profile-compatibility",
+              d: "Analyze profile compatibility",
+              r: "{ user_id, target_user_id }",
+              s: "{ compatibility_score, career_similarity, skill_overlap[], industry_connections, detailed_analysis, recommendations[] }",
+            },
+            {
+              m: "POST",
+              e: "/api/ai/voice-query",
+              d: "Process voice query",
+              r: "{ audio_file?, text_query, context_user_id }",
+              s: "{ response_text, audio_response_url?, insights[], follow_up_suggestions[] }",
+            },
+            {
+              m: "GET",
+              e: "/api/ai/export-analysis/{analysis_id}",
+              d: "Export AI analysis",
+              r: "format (query)",
+              s: "{ download_url, expires_at }",
+            },
+          ],
+        },
+        {
+          title: "Connection Management",
+          rows: [
+            {
+              m: "POST",
+              e: "/api/connections/send-request",
+              d: "Send connection request",
+              r: "{ to_user_id, message? }",
+              s: "{ message, request_id }",
+            },
+            {
+              m: "GET",
+              e: "/api/connections/requests",
+              d: "Get connection requests",
+              r: "type=received/sent, page, limit (query)",
+              s: "{ requests: [{ request_id, user_info, message, sent_at, status }], total_count }",
+            },
+            {
+              m: "PUT",
+              e: "/api/connections/respond/{request_id}",
+              d: "Accept/reject connection",
+              r: "{ status, message? }",
+              s: "{ message, connection_established }",
+            },
+            {
+              m: "GET",
+              e: "/api/connections/list/{user_id}",
+              d: "Get user connections",
+              r: "page, limit (query)",
+              s: "{ connections: [{ user_id, name, photo, position, company, connected_at }], total_count }",
+            },
+            {
+              m: "DELETE",
+              e: "/api/connections/remove/{connection_id}",
+              d: "Remove connection",
+              r: "-",
+              s: "{ message, success }",
+            },
+          ],
+        },
+        {
+          title: "Messaging System",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/messages/conversations",
+              d: "Get user conversations",
+              r: "page, limit (query)",
+              s: "{ conversations: [{ conversation_id, participant_info, last_message, unread_count, updated_at }] }",
+            },
+            {
+              m: "GET",
+              e: "/api/messages/{conversation_id}",
+              d: "Get conversation messages",
+              r: "page, limit, before? (query)",
+              s: "{ messages: [{ message_id, sender_id, content, sent_at, read_status }], pagination }",
+            },
+            {
+              m: "POST",
+              e: "/api/messages/send",
+              d: "Send message",
+              r: "{ conversation_id?, recipient_id?, content, message_type? }",
+              s: "{ message_id, conversation_id, sent_at }",
+            },
+            {
+              m: "PUT",
+              e: "/api/messages/mark-read",
+              d: "Mark messages as read",
+              r: "{ message_ids[] }",
+              s: "{ updated_count, success }",
+            },
+          ],
+        },
+        {
+          title: "Job Management",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/jobs",
+              d: "Get job listings",
+              r: "page, limit, filters{}, college_id? (query)",
+              s: "{ jobs: [{ job_id, title, company, location, salary_range, posted_date, referral_enabled }], total_count, pagination }",
+            },
+            {
+              m: "POST",
+              e: "/api/jobs/create",
+              d: "Post new job",
+              r: "{ title, description, company, location, salary_range?, requirements[], referral_enabled, application_deadline }",
+              s: "{ job_id, message, moderation_required? }",
+            },
+            {
+              m: "GET",
+              e: "/api/jobs/{job_id}",
+              d: "Get job details",
+              r: "-",
+              s: "{ job_details, requirements[], company_info, poster_info, application_count, referral_requests_count }",
+            },
+            {
+              m: "POST",
+              e: "/api/jobs/apply",
+              d: "Apply to job",
+              r: "{ job_id, cover_letter?, resume_url? }",
+              s: "{ application_id, message, ai_fit_analysis? }",
+            },
+            {
+              m: "POST",
+              e: "/api/jobs/ai-analysis",
+              d: "AI job fit analysis",
+              r: "{ job_id, user_id }",
+              s: "{ fit_percentage, matching_skills[], missing_skills[], recommendations[], experience_alignment }",
+            },
+            {
+              m: "GET",
+              e: "/api/jobs/insights",
+              d: "Job market insights",
+              r: "college_id?, timeframe? (query)",
+              s: "{ in_demand_skills[], job_locations[], job_types_distribution, salary_trends }",
+            },
+          ],
+        },
+        {
+          title: "Referral System",
+          rows: [
+            {
+              m: "POST",
+              e: "/api/referrals/request",
+              d: "Request job referral",
+              r: "{ job_id, message, resume_url? }",
+              s: "{ request_id, message, referred_to[] }",
+            },
+            {
+              m: "GET",
+              e: "/api/referrals/requests",
+              d: "Referral requests (job poster)",
+              r: "job_id?, status?, page, limit (query)",
+              s: "{ requests: [{ request_id, job_info, requester_info, message, requested_at, status }] }",
+            },
+            {
+              m: "PUT",
+              e: "/api/referrals/respond/{request_id}",
+              d: "Accept/reject referral",
+              r: "{ status, response_message?, referral_details? }",
+              s: "{ message, notification_sent }",
+            },
+            {
+              m: "GET",
+              e: "/api/referrals/my-requests",
+              d: "User's referral requests",
+              r: "status?, page, limit (query)",
+              s: "{ requests: [{ request_id, job_info, status, requested_at, response_message? }] }",
+            },
+          ],
+        },
+        {
+          title: "Event Management",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/events",
+              d: "Get event listings",
+              r: "college_id?, university_id?, page, limit, filters{} (query)",
+              s: "{ events: [{ event_id, title, date, location, fee, registration_count, status }], total_count }",
+            },
+            {
+              m: "POST",
+              e: "/api/events/create",
+              d: "Create event",
+              r: "{ title, description, date, location, fee?, max_participants?, registration_deadline, images[] }",
+              s: "{ event_id, message, approval_required? }",
+            },
+            {
+              m: "GET",
+              e: "/api/events/{event_id}",
+              d: "Get event details",
+              r: "-",
+              s: "{ event_details, schedule[], images[], registration_info, attendance_info?, qr_code? }",
+            },
+            {
+              m: "POST",
+              e: "/api/events/register",
+              d: "Register for event",
+              r: "{ event_id, payment_info? }",
+              s: "{ registration_id, payment_status?, qr_ticket_url, message }",
+            },
+            {
+              m: "GET",
+              e: "/api/events/my-events",
+              d: "User's events",
+              r: "type=registered/created, status?, page, limit (query)",
+              s: "{ events: [{ event_id, title, date, status, role }], total_count }",
+            },
+            {
+              m: "PUT",
+              e: "/api/events/approve/{event_id}",
+              d: "Approve event (College)",
+              r: "{ status, feedback? }",
+              s: "{ message, notifications_sent }",
+            },
+          ],
+        },
+        {
+          title: "Event Attendance",
+          rows: [
+            {
+              m: "POST",
+              e: "/api/events/attendance/scan",
+              d: "Scan QR for attendance",
+              r: "{ event_id, qr_code_data }",
+              s: "{ success, participant_info, already_marked }",
+            },
+            {
+              m: "POST",
+              e: "/api/events/attendance/manual",
+              d: "Manual attendance marking",
+              r: "{ event_id, participant_ids[], mark_present }",
+              s: "{ updated_count, success_list[], failed_list[] }",
+            },
+            {
+              m: "GET",
+              e: "/api/events/attendance/{event_id}",
+              d: "Get event attendance",
+              r: "page, limit (query)",
+              s: "{ attendance: [{ participant_id, name, email, status, marked_at }], statistics }",
+            },
+            {
+              m: "GET",
+              e: "/api/events/attendance/report/{event_id}",
+              d: "Generate attendance report",
+              r: "format (query)",
+              s: "{ report_url, statistics, expires_at }",
+            },
+          ],
+        },
+        {
+          title: "Payment Integration",
+          rows: [
+            {
+              m: "POST",
+              e: "/api/payments/create-order",
+              d: "Create Razorpay order",
+              r: "{ amount, currency, type, reference_id, description }",
+              s: "{ order_id, amount, currency, razorpay_key, checkout_url }",
+            },
+            {
+              m: "POST",
+              e: "/api/payments/verify",
+              d: "Verify payment",
+              r: "{ razorpay_order_id, razorpay_payment_id, razorpay_signature, reference_id, type }",
+              s: "{ success, transaction_id, receipt_url, certificate_url? }",
+            },
+            {
+              m: "GET",
+              e: "/api/payments/history",
+              d: "Get payment history",
+              r: "user_id, type?, page, limit (query)",
+              s: "{ payments: [{ transaction_id, amount, type, reference_info, date, status }], total_amount }",
+            },
+            {
+              m: "GET",
+              e: "/api/payments/receipt/{transaction_id}",
+              d: "Get payment receipt",
+              r: "-",
+              s: "{ receipt_url, transaction_details, expires_at }",
+            },
+          ],
+        },
+        {
+          title: "Campaign & Donation Management",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/campaigns",
+              d: "Get active campaigns",
+              r: "college_id?, university_id?, type?, page, limit (query)",
+              s: "{ campaigns: [{ campaign_id, title, target_amount, raised_amount, end_date, category }], total_count }",
+            },
+            {
+              m: "POST",
+              e: "/api/campaigns/create",
+              d: "Create campaign",
+              r: "{ title, description, target_amount, end_date, category, budget_breakdown[], milestones[] }",
+              s: "{ campaign_id, message, approval_required? }",
+            },
+            {
+              m: "GET",
+              e: "/api/campaigns/{campaign_id}",
+              d: "Get campaign details",
+              r: "-",
+              s: "{ campaign_details, progress, contributors_count, milestones[], budget_breakdown[], updates[] }",
+            },
+            {
+              m: "POST",
+              e: "/api/campaigns/contribute",
+              d: "Make contribution",
+              r: "{ campaign_id, amount?, contribution_type, skills?, resources?, message? }",
+              s: "{ contribution_id, certificate_url?, acknowledgment_message }",
+            },
+            {
+              m: "GET",
+              e: "/api/campaigns/analytics",
+              d: "Campaign analytics",
+              r: "campaign_id?, college_id?, timeframe? (query)",
+              s: "{ total_raised, contributors_count, contribution_types, performance_metrics, trends }",
+            },
+            {
+              m: "PUT",
+              e: "/api/campaigns/approve/{campaign_id}",
+              d: "Approve campaign (College)",
+              r: "{ status, feedback? }",
+              s: "{ message, notifications_sent }",
+            },
+          ],
+        },
+        {
+          title: "Success Stories",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/success-stories",
+              d: "Get success stories",
+              r: "college_id?, page, limit, category? (query)",
+              s: "{ stories: [{ story_id, title, featured_image, author_info, published_date, celebration_count }] }",
+            },
+            {
+              m: "POST",
+              e: "/api/success-stories/create",
+              d: "Create success story (College)",
+              r: "{ title, content, featured_image?, category, featured_alumni_id?, tags[] }",
+              s: "{ story_id, message, published_at }",
+            },
+            {
+              m: "GET",
+              e: "/api/success-stories/{story_id}",
+              d: "Get story details",
+              r: "-",
+              s: "{ story_details, author_info, content, images[], celebrations_count, shares_count }",
+            },
+            {
+              m: "POST",
+              e: "/api/success-stories/celebrate",
+              d: "Celebrate story",
+              r: "{ story_id, message? }",
+              s: "{ message, total_celebrations }",
+            },
+            {
+              m: "POST",
+              e: "/api/success-stories/share",
+              d: "Share story",
+              r: "{ story_id, platform, share_url }",
+              s: "{ share_tracking_id, shortened_url? }",
+            },
+          ],
+        },
+        {
+          title: "Newsletter & Content",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/newsletters",
+              d: "Get newsletters/blogs",
+              r: "college_id?, type?, page, limit (query)",
+              s: "{ content: [{ content_id, title, summary, published_date, author_info, read_count }] }",
+            },
+            {
+              m: "POST",
+              e: "/api/newsletters/create",
+              d: "Create newsletter/blog",
+              r: "{ title, content_markdown, category, tags[], featured_image?, schedule_date? }",
+              s: "{ content_id, message, published_at?, scheduled_for? }",
+            },
+            {
+              m: "GET",
+              e: "/api/newsletters/{content_id}",
+              d: "Get newsletter details",
+              r: "-",
+              s: "{ content_details, markdown_content, metadata, read_count, engagement_metrics }",
+            },
+            {
+              m: "PUT",
+              e: "/api/newsletters/mark-read",
+              d: "Mark as read",
+              r: "{ content_id }",
+              s: "{ message, new_read_count }",
+            },
+          ],
+        },
+        {
+          title: "Survey System",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/surveys",
+              d: "Get surveys",
+              r: "college_id?, status?, target_batch?, page, limit (query)",
+              s: "{ surveys: [{ survey_id, title, description, deadline, target_audience, response_count }] }",
+            },
+            {
+              m: "POST",
+              e: "/api/surveys/create",
+              d: "Create survey",
+              r: "{ title, description, questions[], target_batches[], deadline, theme_settings }",
+              s: "{ survey_id, message, survey_url }",
+            },
+            {
+              m: "GET",
+              e: "/api/surveys/{survey_id}",
+              d: "Get survey details",
+              r: "-",
+              s: "{ survey_details, questions[], deadline, target_info, completion_status? }",
+            },
+            {
+              m: "POST",
+              e: "/api/surveys/respond",
+              d: "Submit survey response",
+              r: "{ survey_id, responses[] }",
+              s: "{ response_id, message, completion_status }",
+            },
+            {
+              m: "GET",
+              e: "/api/surveys/analytics/{survey_id}",
+              d: "Survey analytics",
+              r: "-",
+              s: "{ completion_rate, response_count, demographics, question_analytics[], device_stats, common_answers[] }",
+            },
+            {
+              m: "GET",
+              e: "/api/surveys/responses/{survey_id}",
+              d: "Get survey responses (College)",
+              r: "page, limit, export? (query)",
+              s: "{ responses: [{ response_id, participant_info?, answers[], submitted_at }], export_url? }",
+            },
+          ],
+        },
+        {
+          title: "Feedback System",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/feedback",
+              d: "Get feedback (College)",
+              r: "status?, anonymous?, page, limit (query)",
+              s: "{ feedback: [{ feedback_id, subject, message, submitted_at, status, anonymous, priority }] }",
+            },
+            {
+              m: "POST",
+              e: "/api/feedback/submit",
+              d: "Submit feedback",
+              r: "{ subject, message, category, anonymous?, priority?, attachments[]? }",
+              s: "{ feedback_id, message, estimated_response_time }",
+            },
+            {
+              m: "GET",
+              e: "/api/feedback/{feedback_id}",
+              d: "Get feedback details",
+              r: "-",
+              s: "{ feedback_details, conversation_thread[], status, resolution_notes? }",
+            },
+            {
+              m: "POST",
+              e: "/api/feedback/respond",
+              d: "Respond to feedback (College)",
+              r: "{ feedback_id, response_message, status?, internal_notes? }",
+              s: "{ message, notification_sent, updated_status }",
+            },
+          ],
+        },
+        {
+          title: "Smart Alma Card",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/alma-card/{user_id}",
+              d: "Get Alma Card details",
+              r: "-",
+              s: "{ card_info, qr_code_url, nfc_data, profile_preview, privacy_settings }",
+            },
+            {
+              m: "PUT",
+              e: "/api/alma-card/settings",
+              d: "Update card settings",
+              r: "{ privacy_level, visible_fields[], custom_message? }",
+              s: "{ message, updated_settings }",
+            },
+            {
+              m: "POST",
+              e: "/api/alma-card/scan",
+              d: "Process card scan",
+              r: "{ scanned_data, scanner_user_id? }",
+              s: "{ profile_info, connection_status, scan_logged }",
+            },
+            {
+              m: "GET",
+              e: "/api/alma-card/analytics",
+              d: "Card usage analytics",
+              r: "timeframe? (query)",
+              s: "{ total_scans, unique_scanners, scan_locations[], trends }",
+            },
+          ],
+        },
+        {
+          title: "Dashboard & Analytics",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/dashboard/alumni",
+              d: "Alumni dashboard stats",
+              r: "-",
+              s: "{ profile_completion, connections_count, recent_activities[], opportunities_count, upcoming_events[] }",
+            },
+            {
+              m: "GET",
+              e: "/api/dashboard/college",
+              d: "College dashboard stats",
+              r: "college_id (query)",
+              s: "{ total_alumni, verified_count, recent_registrations[], job_stats, event_stats, campaign_stats }",
+            },
+            {
+              m: "GET",
+              e: "/api/dashboard/university",
+              d: "University dashboard stats",
+              r: "university_id (query)",
+              s: "{ colleges_count, total_alumni, recent_activities[], university_events[], campaigns_stats }",
+            },
+            {
+              m: "GET",
+              e: "/api/analytics/engagement",
+              d: "Engagement analytics",
+              r: "level, entity_id, timeframe (query)",
+              s: "{ active_users, engagement_rate, popular_features[], activity_trends[] }",
+            },
+            {
+              m: "GET",
+              e: "/api/analytics/export",
+              d: "Export analytics data",
+              r: "type, entity_id, format, timeframe (query)",
+              s: "{ export_url, file_size, expires_at }",
+            },
+          ],
+        },
+        {
+          title: "Dynamic Routing & Institution Management",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/institutions/routes",
+              d: "Get available routes",
+              r: "-",
+              s: "{ routes: [{ path, institution_name, institution_type, subdomain_active }] }",
+            },
+            {
+              m: "GET",
+              e: "/api/institutions/{route_path}",
+              d: "Institution public info",
+              r: "-",
+              s: "{ institution_info, public_stats, featured_alumni[], recent_events[], contact_info }",
+            },
+            {
+              m: "POST",
+              e: "/api/institutions/create-route",
+              d: "Create institution route",
+              r: "{ institution_id, custom_path?, enable_subdomain }",
+              s: "{ route_path, public_url, message }",
+            },
+          ],
+        },
+        {
+          title: "System Administration",
+          rows: [
+            {
+              m: "GET",
+              e: "/api/admin/system-stats",
+              d: "System statistics",
+              r: "timeframe? (query)",
+              s: "{ total_users, active_sessions, system_health, resource_usage, error_rates }",
+            },
+            {
+              m: "GET",
+              e: "/api/admin/audit-logs",
+              d: "Audit logs",
+              r: "user_id?, action?, page, limit, date_range (query)",
+              s: "{ logs: [{ log_id, user_id, action, timestamp, ip_address, details }] }",
+            },
+            {
+              m: "POST",
+              e: "/api/admin/maintenance",
+              d: "System maintenance",
+              r: "{ maintenance_type, duration?, message? }",
+              s: "{ maintenance_id, scheduled_at, estimated_duration }",
+            },
+          ],
+        },
+      ];
+
+      // ---- Render helpers ----
+      const toc = document.getElementById("toc");
+      const sections = document.getElementById("sections");
+      const filters = document.getElementById("filters");
+      const search = document.getElementById("search");
+
+      const methods = [
+        ...new Set(apiSpec.flatMap((s) => s.rows.map((r) => r.m))),
+      ];
+      const active = new Set(methods); // all on by default
+
+      function badge(m) {
+        return `<span class="badge ${m}">${m}</span>`;
+      }
+      function copyBtn(text) {
+        return `<span class="copy" data-copy="${text}">copy</span>`;
+      }
+
+      function renderTOC() {
+        toc.innerHTML = apiSpec
+          .map((s, i) => `<a href="#sec-${i}" data-i="${i}">${s.title}</a>`)
+          .join("");
+      }
+
+      function renderFilters() {
+        filters.innerHTML = methods
+          .map(
+            (m) => `<span class="chip" data-m="${m}" data-on="true">${m}</span>`
+          )
+          .join("");
+      }
+
+      function renderSections() {
+        sections.innerHTML = apiSpec
+          .map(
+            (s, i) => `
+    <section id="sec-${i}">
+      <h2>${s.title}</h2>
+      <div class="card">
+        <table class="table" data-section="${i}">
+          <thead><tr>
+            <th style="width:90px">Method</th>
+            <th style="width:360px">Endpoint</th>
+            <th>Description</th>
+            <th style="width:280px">Request Body</th>
+            <th style="width:320px">Response Data</th>
+          </tr></thead>
+          <tbody>
+            ${s.rows
+              .map(
+                (r) => `
+              <tr data-method="${r.m}">
+                <td>${badge(r.m)}</td>
+                <td class="endpoint"><code data-copy-path="${r.e}">${
+                  r.e
+                }</code> ${copyBtn(r.e)}</td>
+                <td>${r.d}</td>
+                <td><code>${r.r}</code></td>
+                <td><code>${r.s}</code></td>
+              </tr>
+            `
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `
+          )
+          .join("");
+      }
+
+      function applyFilters() {
+        const q = (search.value || "").toLowerCase();
+        document.querySelectorAll("tbody tr").forEach((tr) => {
+          const m = tr.getAttribute("data-method");
+          const on = active.has(m);
+          const txt = tr.innerText.toLowerCase();
+          const show = on && (!q || txt.includes(q));
+          tr.style.display = show ? "table-row" : "none";
+        });
+      }
+
+      // events
+      filters.addEventListener("click", (e) => {
+        const el = e.target.closest(".chip");
+        if (!el) return;
+        const m = el.getAttribute("data-m");
+        const on = el.getAttribute("data-on") === "true";
+        el.setAttribute("data-on", String(!on));
+        if (on) active.delete(m);
+        else active.add(m);
+        applyFilters();
+      });
+
+      search.addEventListener("input", () => applyFilters());
+
+      document.addEventListener("click", (e) => {
+        const cp = e.target.closest("[data-copy]");
+        if (!cp) return;
+        const text = cp.getAttribute("data-copy");
+        navigator.clipboard.writeText(text).then(() => {
+          cp.textContent = "copied";
+          setTimeout(() => (cp.textContent = "copy"), 1100);
+        });
+      });
+
+      // highlight active TOC item on scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((en) => {
+            const id = en.target.id;
+            if (!id) return;
+            const idx = id.split("-")[1];
+            const link = toc.querySelector(`a[data-i="${idx}"]`);
+            if (en.isIntersecting) {
+              toc
+                .querySelectorAll("a")
+                .forEach((a) => a.classList.remove("active"));
+              link?.classList.add("active");
+            }
+          });
+        },
+        { rootMargin: "-60% 0px -35% 0px", threshold: 0 }
+      );
+
+      function boot() {
+        renderTOC();
+        renderFilters();
+        renderSections();
+        document
+          .querySelectorAll("main section")
+          .forEach((sec) => observer.observe(sec));
+        applyFilters();
+      }
+      boot();
+    </script>
+  </body>
+</html>
